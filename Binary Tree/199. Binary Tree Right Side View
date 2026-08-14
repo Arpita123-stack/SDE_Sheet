@@ -1,0 +1,22 @@
+class Solution {
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        solve(root, 0, result);
+        return result;
+    }
+
+    private void solve(TreeNode root, int depth, List<Integer> result) {
+        if (root == null) {
+            return;
+        }
+
+        // First node encountered at this depth
+        if (depth == result.size()) {
+            result.add(root.val);
+        }
+
+        // Visit right first
+        solve(root.right, depth + 1, result);
+        solve(root.left, depth + 1, result);
+    }
+}
